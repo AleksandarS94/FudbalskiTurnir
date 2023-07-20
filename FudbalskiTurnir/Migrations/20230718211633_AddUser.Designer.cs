@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FudbalskiTurnir.Migrations
 {
     [DbContext(typeof(FudbalskiTurnirContext))]
-    [Migration("20230718191828_AddUser")]
+    [Migration("20230718211633_AddUser")]
     partial class AddUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,6 +37,27 @@ namespace FudbalskiTurnir.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Pages");
+                });
+
+            modelBuilder.Entity("FudbalskiTurnir.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

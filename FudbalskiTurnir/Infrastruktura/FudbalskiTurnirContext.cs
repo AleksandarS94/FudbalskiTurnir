@@ -1,13 +1,11 @@
 ﻿using FudbalskiTurnir.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FudbalskiTurnir.Infrastruktura
 {
-    public class FudbalskiTurnirContext : DbContext
+    public class FudbalskiTurnirContext : IdentityDbContext<AppUser>
     {
         public FudbalskiTurnirContext()
         {
@@ -15,9 +13,11 @@ namespace FudbalskiTurnir.Infrastruktura
 
         public FudbalskiTurnirContext(DbContextOptions<FudbalskiTurnirContext> options) : base(options)
         {
-        }
-            public DbSet<Page> Pages { get; set; }
-            public DbSet<User> Users { get; set; }
+        } 
+        public DbSet<Page> Pages { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<Player> Players { get; set; }
     
         
     }

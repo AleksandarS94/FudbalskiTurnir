@@ -1,0 +1,13 @@
+﻿@model Team
+
+@using (Html.BeginForm("EditTeam", "Team", FormMethod.Post))
+{
+<div class="form-group">
+    <label for="Name">Name</label>
+    <br />
+    @Html.TextBoxFor(x => x.Name, null, new { @placeholder = "Enter name", @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Name, null, new { @style = "color:red" })
+    <br />
+    <button type="submit" class="btn btn-info">Update</button>
+</div>
+}

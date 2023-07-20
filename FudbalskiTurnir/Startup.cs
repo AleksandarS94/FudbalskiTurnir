@@ -1,11 +1,18 @@
 using FudbalskiTurnir.Areas.Administrator.Controllers;
+using FudbalskiTurnir.Areas.Administrator.Queries;
 using FudbalskiTurnir.Infrastruktura;
+using FudbalskiTurnir.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
@@ -28,10 +35,43 @@ namespace FudbalskiTurnir
         {
             services.AddControllersWithViews();
 
+            services.AddMemoryCache();
+
             services.AddScoped<Login>();
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(60);
+            });
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+
+            });
+            services.AddMvc(options => options.Filters.Add(new AuthorizeFilter()));
 
             services.AddDbContext<FudbalskiTurnirContext>(options => options.UseSqlServer
             (Configuration.GetConnectionString("FudbalskiTurnirContext")));
+
+            services.TryAddScoped<TeamQuery>();
+            services.TryAddScoped<PlayerQuery>();
+            services.TryAddScoped<SignInManager<AppUser>>();
+            services.TryAddScoped<UserManager<AppUser>>();
+
+            services.AddIdentity<AppUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 3;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireDigit = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Lockout.MaxFailedAccessAttempts = 3;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
+            }).AddEntityFrameworkStores<FudbalskiTurnirContext>();
+
 
         }
 
@@ -52,8 +92,11 @@ namespace FudbalskiTurnir
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {

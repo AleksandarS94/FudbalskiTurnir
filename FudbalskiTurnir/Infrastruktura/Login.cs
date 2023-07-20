@@ -10,10 +10,14 @@ namespace FudbalskiTurnir.Infrastruktura
 {
     public class Login
     {
-        FudbalskiTurnirContext dbContext = new FudbalskiTurnirContext();
-        public async Task<User> getLoginUser(User user)
+        private readonly FudbalskiTurnirContext context;
+        public Login(FudbalskiTurnirContext context)
         {
-            var db = await dbContext.Users.FirstOrDefaultAsync(x => x.Email == user.Email && x.Password == user.Password);
+            this.context = context;
+        }
+        public User getLoginUser(User user)
+        {
+            var db = context.Users.FirstOrDefault(x => x.Email == user.Email && x.Password == user.Password);
             return db;
         }
     }

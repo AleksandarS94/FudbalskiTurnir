@@ -1,0 +1,28 @@
+﻿@model Player
+@{ 
+    var listTeams = new List<Team>();
+    foreach (var item in (List<Team>)ViewData["PlayerTeams"])
+    {
+        listTeams.Add(item);
+    }
+}
+
+@using (Html.BeginForm("AddPlayer", "Player", FormMethod.Post))
+{
+<div class="form-group">
+    <label for="Name">FirstName:</label>
+    @Html.TextBoxFor(x => x.FirstName, null, new { @placeholder = "Enter FirstName", @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.FirstName, null, new { @style = "color:red" })
+    <br />
+    <label for="Name">LastName:</label>
+    @Html.TextBoxFor(x => x.LastName, null, new { @placeholder = "Enter LastName", @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.LastName, null, new { @style = "color:red" })
+
+    <label>Choose the team:</label>
+    <br />
+    @Html.DropDownListFor(x => x.TeamId, listTeams.Select(item => new SelectListItem { Text = item.Name, Value = item.Id.ToString() }), null, new { @class = "btn btn-secondary dropdown-toggle" })
+    <br />
+    <br />
+    <button type="submit" class="btn btn-info">Add</button>
+</div>
+}

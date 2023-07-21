@@ -1,0 +1,30 @@
+﻿@model List<FudbalskiTurnir.Areas.Administrator.ViewModels.PointModel>
+@{
+    ViewData["Title"] = "Team Overview";
+    int i = 1;
+}
+
+@if (Model.Count > 0)
+{
+    <h1> NumberOfPoints Overview</h1>
+    <div>
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>Team Name</th>
+                <th>Points</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr class="table-warning">
+                    <td><b>@(i).</b></td>
+                    <td>@item.TeamName</td>
+                    <td>@item.NumberOfPoints</td>
+                </tr>
+                i++;
+            }
+
+
+        </table>
+    </div>
+}

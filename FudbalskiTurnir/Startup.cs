@@ -58,6 +58,7 @@ namespace FudbalskiTurnir
 
             services.TryAddScoped<TeamQuery>();
             services.TryAddScoped<PlayerQuery>();
+            services.TryAddScoped<ResultQuery>();
             services.TryAddScoped<SignInManager<AppUser>>();
             services.TryAddScoped<UserManager<AppUser>>();
 

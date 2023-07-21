@@ -1,1 +1,51 @@
-﻿rezultati
+﻿@model List<FudbalskiTurnir.Areas.Administrator.ViewModels.ResultViewModel>
+@Html.ActionLink("Generisi parove", "GeneratedPairs", "Result", null, new { @class = "btn btn-primary" })
+
+<h1> Result Overview</h1>
+<div>
+    @using (Html.BeginForm("SaveResult", "Result", FormMethod.Post))
+    {
+    <table class="table">
+        <tr>
+            <th>Match</th>
+            <th>Result</th>
+        </tr>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                @Html.HiddenFor(m => m[i].Id)
+                <td>@Model[i].MatchPair</td>
+                @if ((bool)ViewData["editDisabled"])
+                {
+                    <td>
+                        @Html.TextBoxFor(m => m[i].Team1, new { @style = "width:20px", @disabled = true })
+                        :
+                        @Html.TextBoxFor(m => m[i].Team2, new { @style = "width:20px", @disabled = true })
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.TextBoxFor(m => m[i].Team1, new { @style = "width:20px" })
+                        :
+                        @Html.TextBoxFor(m => m[i].Team2, new { @style = "width:20px" })
+                    </td>
+                }
+            </tr>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <p style="color: red;">@TempData["ErrorMessage"]</p>
+        }
+
+        @if ((bool)ViewData["editDisabled"] || TempData["ErrorMessage"] != null)
+        {
+            @Html.ActionLink("Edit Result", "EditResult", "Result", new { @class = "btn btn-danger" })
+        }
+        else
+        {
+            <button type="submit" class="btn btn-info">Save Result</button>
+        }
+    </table>
+    }
+</div>

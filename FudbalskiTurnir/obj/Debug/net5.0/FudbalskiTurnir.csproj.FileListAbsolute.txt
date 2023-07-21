@@ -298,6 +298,7 @@ C:\Users\U6068854\Downloads\FudbalskiTurnir-main\FudbalskiTurnir\obj\Debug\net5.
 C:\Users\U6068854\Downloads\FudbalskiTurnir-main\FudbalskiTurnir\obj\Debug\net5.0\Razor\Views\Team\EditTeam.cshtml.g.cs
 C:\Users\U6068854\Downloads\FudbalskiTurnir-main\FudbalskiTurnir\obj\Debug\net5.0\Razor\Views\Player\AddPlayer.cshtml.g.cs
 C:\Users\U6068854\Downloads\FudbalskiTurnir-main\FudbalskiTurnir\obj\Debug\net5.0\Razor\Views\Player\EditPlayer.cshtml.g.cs
+C:\Users\U6068854\Downloads\FudbalskiTurnir-main\FudbalskiTurnir\obj\Debug\net5.0\Razor\Views\Result\NumberOfPoints.cshtml.g.cs
 C:\Projects\FudbalskiTurnir\FudbalskiTurnir\bin\Debug\net5.0\appsettings.Development.json
 C:\Projects\FudbalskiTurnir\FudbalskiTurnir\bin\Debug\net5.0\appsettings.json
 C:\Projects\FudbalskiTurnir\FudbalskiTurnir\bin\Debug\net5.0\FudbalskiTurnir.exe
@@ -440,6 +441,7 @@ C:\Projects\FudbalskiTurnir\FudbalskiTurnir\obj\Debug\net5.0\Razor\Views\Player\
 C:\Projects\FudbalskiTurnir\FudbalskiTurnir\obj\Debug\net5.0\Razor\Views\Player\EditPlayer.cshtml.g.cs
 C:\Projects\FudbalskiTurnir\FudbalskiTurnir\obj\Debug\net5.0\Razor\Views\Player\Index.cshtml.g.cs
 C:\Projects\FudbalskiTurnir\FudbalskiTurnir\obj\Debug\net5.0\Razor\Views\Result\Index.cshtml.g.cs
+C:\Projects\FudbalskiTurnir\FudbalskiTurnir\obj\Debug\net5.0\Razor\Views\Result\NumberOfPoints.cshtml.g.cs
 C:\Projects\FudbalskiTurnir\FudbalskiTurnir\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Projects\FudbalskiTurnir\FudbalskiTurnir\obj\Debug\net5.0\Razor\Views\Shared\_LayoutLogin.cshtml.g.cs
 C:\Projects\FudbalskiTurnir\FudbalskiTurnir\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs

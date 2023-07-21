@@ -4,14 +4,16 @@ using FudbalskiTurnir.Infrastruktura;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FudbalskiTurnir.Migrations
 {
     [DbContext(typeof(FudbalskiTurnirContext))]
-    partial class FudbalskiTurnirContextModelSnapshot : ModelSnapshot
+    [Migration("20230720204830_UpdateResultTable")]
+    partial class UpdateResultTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,12 +149,6 @@ namespace FudbalskiTurnir.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SecondTeamId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Team1Result")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Team2Result")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

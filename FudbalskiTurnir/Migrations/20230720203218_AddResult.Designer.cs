@@ -4,14 +4,16 @@ using FudbalskiTurnir.Infrastruktura;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FudbalskiTurnir.Migrations
 {
     [DbContext(typeof(FudbalskiTurnirContext))]
-    partial class FudbalskiTurnirContextModelSnapshot : ModelSnapshot
+    [Migration("20230720203218_AddResult")]
+    partial class AddResult
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,6 +89,27 @@ namespace FudbalskiTurnir.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("FudbalskiTurnir.Models.MatchResult", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("FirstTeamId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Result")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SecondTeamId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Results");
+                });
+
             modelBuilder.Entity("FudbalskiTurnir.Models.Page", b =>
                 {
                     b.Property<int>("Id")
@@ -131,33 +154,6 @@ namespace FudbalskiTurnir.Migrations
                     b.HasIndex("TeamId");
 
                     b.ToTable("Players");
-                });
-
-            modelBuilder.Entity("FudbalskiTurnir.Models.Result", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("FirstTeamId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("MatchResult")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SecondTeamId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Team1Result")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Team2Result")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Results");
                 });
 
             modelBuilder.Entity("FudbalskiTurnir.Models.Team", b =>
